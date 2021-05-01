@@ -80,7 +80,7 @@ app.patch('/members', auth, async (req, res) => {
         await member.save();
         res.send(member);
     }catch(e) {
-        res.status(400).send({error : 'Couldnt update member'});
+        res.status(400).send({error : 'Couldnt update member', message : e});
     }
 });
 
