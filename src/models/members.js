@@ -180,7 +180,7 @@ membersSchema.methods.toJSON = function () {
             residentialAddress: member.address.residentialAddress,
             residentialPincode: member.address.residentialPincode
         },
-        dob: (member.dateOfBirth ? member.dateOfBirth.toLocaleDateString('IST') : undefined),
+        dateOfBirth: (member.dateOfBirth ? member.dateOfBirth.toLocaleDateString('IST') : undefined),
         age : (member.dateOfBirth ? 
             (new Date(Date.now()).getFullYear() - member.dateOfBirth.getFullYear()) : undefined ),
         email: member.email,
