@@ -195,6 +195,7 @@ membersSchema.methods.toJSON = function () {
         certificates: member.certificates.map((certificate) => certificate.value),
         courtOfPractice: member.courtOfPractice.map((court) => court.value),
         chamberOpenDays: member.chamberOpenDays.map((day) => day.value),
+        avatar : member.avatar,
         createdAt: member.createdAt,
         updatedAt: member.updatedAt
     };

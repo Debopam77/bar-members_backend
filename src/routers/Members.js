@@ -64,13 +64,15 @@ app.delete('/members', auth, async (req, res) => {
 
 //Edit members
 app.patch('/members', auth, async (req, res) => {
-    updatesNotAllowed = ['registration', 'phone','_id'];
+    updatesNotAllowed = ['phone','_id'];
     const updates = Object.keys(req.body);
+    
     member = req.member;
     //Check if request is made my Admin
     if(member.isAdmin) {
         updatesNotAllowed = ['registration'];
         member = await Members.findOne({phone : req.body.phone});
+        
     }
     const isAllowed = updates.every((update) => !updatesNotAllowed.includes(update));
     if(!isAllowed)
