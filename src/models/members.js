@@ -167,6 +167,7 @@ const membersSchema = new mongoose.Schema({
 //Getting public member details
 membersSchema.methods.toJSON = function () {
     const member = this;
+    const dayOptions = { year: 'numeric', month: 'long', day: 'numeric' };
     return {
         name: {
             firstName : member.name.firstName,
@@ -180,7 +181,7 @@ membersSchema.methods.toJSON = function () {
             residentialAddress: member.address.residentialAddress,
             residentialPincode: member.address.residentialPincode
         },
-        dateOfBirth: (member.dateOfBirth ? member.dateOfBirth.toLocaleDateString('IST') : undefined),
+        dateOfBirth: (member.dateOfBirth ? member.dateOfBirth.toLocaleDateString('IST', dayOptions) : undefined),
         age : (member.dateOfBirth ? 
             (new Date(Date.now()).getFullYear() - member.dateOfBirth.getFullYear()) : undefined ),
         email: member.email,

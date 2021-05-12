@@ -10,7 +10,8 @@ app.use(helmet());
 app.use(cors());
 
 //Accept JSON request body
-app.use(express.json());
+app.use(express.json({limit: '50mb', extended: true}));
+app.use(express.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}))
 
 app.listen(port, ()=> console.log('Server is up on port ' + port));
 //Using the router for Members
