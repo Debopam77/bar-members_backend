@@ -12,7 +12,7 @@ app.post('/members', async (req, res) => {
         const token = await member.generateAuthToken();
         res.status(201).send({ member, token });
     } catch (e) {
-        res.status(400).send();
+        res.status(400).send(e);
     }
 });
 

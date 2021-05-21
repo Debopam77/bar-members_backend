@@ -97,11 +97,13 @@ const membersSchema = new mongoose.Schema({
         type: Number,
         trim: true
     },
-    qualification: {
-        type: String,
-        required: false,
-        trim: true
-    },
+    qualification: [{
+        value: {
+            type: String,
+            required: false,
+            trim: true
+        }
+    }],
     memberOfLibrary: {
         type: String,
         required: false,
@@ -194,6 +196,7 @@ membersSchema.methods.toJSON = function () {
         chamberOptional: member.chamberOptional,
         expertise: member.expertise.map((skill) => skill.value),
         certificates: member.certificates.map((certificate) => certificate.value),
+        qualification : member.qualification.map((qualification) => qualification.value),
         courtOfPractice: member.courtOfPractice.map((court) => court.value),
         chamberOpenDays: member.chamberOpenDays.map((day) => day.value),
         avatar : member.avatar,
