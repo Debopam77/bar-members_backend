@@ -65,23 +65,26 @@ app.delete('/members', auth, async (req, res) => {
 //Edit members
 app.patch('/members', auth, async (req, res) => {
     updatesNotAllowed = ['phone','_id'];
-    const updates = Object.keys(req.body);
-    
+    let updates = Object.keys(req.body);
     member = req.member;
     //Check if request is made my Admin
     if(member.isAdmin) {
-        updatesNotAllowed = ['registration'];
+        //Find the member who is being patched
         member = await Members.findOne({phone : req.body.phone});
-        
+        //Remove phone from the updates array
+        updates = updates.filter((value) => !(value === 'phone')); 
     }
     const isAllowed = updates.every((update) => !updatesNotAllowed.includes(update));
+    
     if(!isAllowed)
         return res.status(400).send({ error : 'Invalid fields' });
     try {
+        
         updates.forEach((update) => {member[update] = req.body[update]});
         await member.save();
         res.send(member);
     }catch(e) {
+        console.log(e);
         res.status(400).send({error : 'Couldnt update member', message : e});
     }
 });

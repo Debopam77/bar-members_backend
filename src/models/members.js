@@ -134,6 +134,12 @@ const membersSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    isApproved: {
+        type: Boolean,
+        default : false,
+        required: true,
+        trim: true
+    },
     registration: {
         type: String,
         unique: true,
@@ -177,6 +183,7 @@ membersSchema.methods.toJSON = function () {
             lastName: member.name.lastName
         },
         isAdmin : member.isAdmin,
+        isApproved : member.isApproved,
         address: {
             chamberAddress: member.address.chamberAddress,
             chamberPincode: member.address.chamberPincode,
