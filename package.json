@@ -1,0 +1,23 @@
+{
+    "name": "bar-members",
+    "version": "0.5.0",
+    "main": "index.js",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "helmet": "^4.5.0",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^5.12.1",
+        "validator": "^13.5.2"
+    },
+    "scripts": {
+        "start": "node src/index.js",
+        "dev": "env-cmd -f config/dev.env nodemon src/index.js",
+        "prod": "env-cmd -f config/prod.env nodemon src/index.js"
+    },
+    "devDependencies": {
+        "env-cmd": "^10.1.0",
+        "nodemon": "^2.0.7"
+    }
+}
